@@ -1,0 +1,5 @@
+C:\Users\AlvaroPC\RiderProjects\EjemploDC2\EjemploDC2\obj\Debug\net7.0\EjemploDC2.csproj.AssemblyReference.cache
+C:\Users\AlvaroPC\RiderProjects\EjemploDC2\EjemploDC2\obj\Debug\net7.0\EjemploDC2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AlvaroPC\RiderProjects\EjemploDC2\EjemploDC2\obj\Debug\net7.0\EjemploDC2.AssemblyInfoInputs.cache
+C:\Users\AlvaroPC\RiderProjects\EjemploDC2\EjemploDC2\obj\Debug\net7.0\EjemploDC2.AssemblyInfo.cs
+C:\Users\AlvaroPC\RiderProjects\EjemploDC2\EjemploDC2\obj\Debug\net7.0\EjemploDC2.csproj.CoreCompileInputs.cache
