@@ -5,28 +5,38 @@ class Programa
 {
     static void Main(string[] args)
     {
-        //Crear punto:
-        Punto punto1 = new Punto(5,5); // Se crea el punto
-        Console.WriteLine(punto1.Dibujar()); // Se dibuja
-        punto1.Mover(7, 7); //Se mueve
-        Console.WriteLine(punto1.Dibujar()); // Se vuelve a dibujar
-    
-        //Crear circulo
-        Circulo circulo1 = new Circulo(40, 50, 20);
-        Console.WriteLine(circulo1.Dibujar());
-        circulo1.Mover(20, 20);
-        Console.WriteLine(circulo1.Dibujar());
-    
-        //Crear rectángulo
-        Rectangulo rectangulo1 = new Rectangulo(20, 20, 20, 20);
-        Console.WriteLine(rectangulo1.Dibujar());
+        try
+        {
+            //Crear punto:
+            Punto punto1 = new Punto(5, 5); // Se crea el punto
+            Console.WriteLine(punto1.Dibujar()); // Se dibuja
+            punto1.Mover(7, 7); //Se mueve
+            Console.WriteLine(punto1.Dibujar()); // Se vuelve a dibujar
 
+            //Crear circulo
+            Circulo circulo1 = new Circulo(40, 50, 20);
+            Console.WriteLine(circulo1.Dibujar());
+            circulo1.Mover(20, 20);
+            Console.WriteLine(circulo1.Dibujar());
 
-        //Crear gráfico compuesto:
-        //GraficoCompuesto graficoCompuesto = new GraficoCompuesto();
-        //graficoCompuesto.AgregarGrafico(punto1);
-        //Console.WriteLine(graficoCompuesto.Dibujar());
+            //Crear rectángulo
+            Rectangulo rectangulo1 = new Rectangulo(20, 20, 20, 20);
+            Console.WriteLine(rectangulo1.Dibujar());
+            rectangulo1.Mover(70, 70);
+            Console.WriteLine(rectangulo1.Dibujar());
 
+            Console.WriteLine("____");
+            //Crear gráfico compuesto:
+            GraficoCompuesto graficoCompuesto = new GraficoCompuesto();
+            graficoCompuesto.AgregarGrafico(punto1);
+            graficoCompuesto.AgregarGrafico(circulo1);
+            graficoCompuesto.AgregarGrafico(rectangulo1);
+            Console.WriteLine(graficoCompuesto.Dibujar());
+        }
+        catch(ArgumentOutOfRangeException)
+        {
+            Console.WriteLine("Datos erróneos.");
+        }
 
 
     }
@@ -113,7 +123,8 @@ public class Punto : IGrafico
 
 public class GraficoCompuesto : IGrafico
 {
-    private List<IGrafico> GraphicList;
+    private List<IGrafico> GraphicList = new List<IGrafico>();
+    
     public bool Mover(int x, int y)
     {
         if (x <= 800 && y <= 600)
@@ -134,15 +145,14 @@ public class GraficoCompuesto : IGrafico
         string GraficosDibujados = "";
         for (int i = 0; i < GraphicList.Count; i++)
         {
-            GraficosDibujados += GraphicList[i].Dibujar() + "/n";
+            GraficosDibujados += GraphicList[i].Dibujar()+"\n";
         }
-        Console.WriteLine("Jesuli" + GraficosDibujados);
         return GraficosDibujados;
     }
 
     public void AgregarGrafico(IGrafico grafico)
     {
-        GraphicList.Add(grafico);
+        this.GraphicList.Add(grafico);
     }
 }
 
@@ -200,14 +210,16 @@ public class Circulo : Punto
 
 public class Rectangulo : Punto
 {
+    private int _ancho;
+    private int _alto;
     private int ancho
     {
-        get { return ancho;}
+        get { return _ancho;}
         set
         {
             if (ancho <= 800)
             {
-                this.ancho = value;
+                this._ancho = value;
             }
             else
             {
@@ -217,12 +229,12 @@ public class Rectangulo : Punto
         
     }
     private int alto {
-        get { return alto;}
+        get { return _alto;}
         set
         {
             if (alto <= 600)
             {
-                this.alto = value;
+                this._alto = value;
             }
             else
             {
@@ -242,10 +254,14 @@ public class Rectangulo : Punto
 
     public Rectangulo(int x, int y,int ancho, int alto) : base(x, y)
     {
+        this.x = x;
+        this.y = y;
+        this.ancho = ancho;
+        this.alto = alto;
     }
 
     public override string Dibujar()
     {
-        return "Circulo: ancho:" + this.ancho + " alto:" + this.alto + " x:" + this.x + " y:" + this.y;
+        return "Rectangulo: ancho:" + this.ancho + " alto:" + this.alto + " x:" + this.x + " y:" + this.y;
     }
 }
